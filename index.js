@@ -66,33 +66,41 @@ function capitalize() {
 }
 
 let countApp = 0;
-function quit() {
-  countApp++;
-  const terminate = alert(
-    `You have used this application ${countApp} times. Farewell!`
+function runApp() {
+  countApp++; // Increment the count each time the function is called
+
+  // Call the specific function based on user input
+  const operation = prompt(
+    'What task would you like to run? sum, convert, low, random, wordCounter, randomRange, capitalize, or quit?'
   );
+
+  if (operation === 'sum') {
+    sum();
+  } else if (operation === 'convert') {
+    convert();
+  } else if (operation === 'low') {
+    compareNumbers();
+  } else if (operation === 'random') {
+    generateRandom();
+  } else if (operation === 'wordCounter') {
+    countWords();
+  } else if (operation === 'randomRange') {
+    randomRange();
+  } else if (operation === 'capitalize') {
+    capitalize();
+  } else if (operation === 'quit') {
+    quit();
+  } else {
+    alert('Invalid operation selected.');
+  }
+
+  // After the function is complete, prompt for the next operation
+  const continuePrompt = confirm('Do you want to perform another task?');
+  if (continuePrompt) {
+    runApp();
+  } else {
+    quit();
+  }
 }
 
-const operation = prompt(
-  'What task would you like to run? sum, convert, low, random, wordCounter, randomRange, capitalize, or quit?'
-);
-
-if (operation === 'sum') {
-  sum();
-} else if (operation === 'convert') {
-  convert();
-} else if (operation === 'low') {
-  compareNumbers();
-} else if (operation === 'random') {
-  generateRandom();
-} else if (operation === 'wordCounter') {
-  countWords();
-} else if (operation === 'randomRange') {
-  randomRange();
-} else if (operation === 'capitalize') {
-  capitalize();
-} else if (operation === 'quit') {
-  quit();
-} else {
-  alert('Invalid operation selected.');
-}
+runApp(); // Start the application
